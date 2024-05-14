@@ -19,6 +19,8 @@
 
 <body>
 <!-- 게시판 리스트 -->
+
+<div><jsp:include page="/login/loginState.jsp"></jsp:include></div>
 <table width=50% border="0" cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
 		<td colspan="4">MVC 게시판</td>
@@ -26,7 +28,6 @@
 			<font size=2>글 개수 : ${listcount }</font>
 		</td>
 	</tr>
-	
 	<tr align="center" valign="middle" bordercolor="#333333">
 		<td style="font-family:Tahoma;font-size:8pt;" width="8%" height="26">
 			<div align="center">번호</div>

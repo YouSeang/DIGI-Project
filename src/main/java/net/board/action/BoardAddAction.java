@@ -51,6 +51,8 @@ public class BoardAddAction implements Action {
 	   		
 	   		forward.setRedirect(true); 
 	   		//게시글 등록하면 url이 BoardList로 나와야 하니까 포워딩이 아니라 리다이렉트로 처리함
+	   		//여기서 forward 방식으로 바꾸면 url이 바뀌지 않기때문에 null값 발생
+	   		//값은 BoardList.bo로 연결되어야 나옴
 	   		forward.setPath("./BoardList.bo");
 	   		return forward;
 	   		

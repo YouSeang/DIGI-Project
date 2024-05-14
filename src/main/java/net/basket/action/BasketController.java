@@ -1,4 +1,4 @@
-package net.board.action;
+package net.basket.action;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
- public class BoardFrontController 
+ public class BasketController 
  	extends javax.servlet.http.HttpServlet 
  	implements javax.servlet.Servlet {
 	 protected void doProcess(HttpServletRequest request, HttpServletResponse response) 
@@ -27,77 +27,31 @@ import javax.servlet.http.HttpServletResponse;
 		 //클라이언트 요청을 처리하는 데 사용됨
 		 //Interface에 추상메소드를 만들어 놓고, 같은 메소드를 오버라이딩(동적바인딩)                 
 		   
-		   if(command.equals("/BoardWrite.bo")){ //DB를 가지고 있지 않은 경우;
+		   if(command.equals("/CookieList.ba")){ //DB를 가지고 있지 않은 경우;
 			   forward=new ActionForward(); //forward 객체 생성
 			   forward.setRedirect(false); //Redirect 'false'값으로 포워딩방식으로 페이지 이동
-			   forward.setPath("./board/qna_board_write.jsp");
+			   forward.setPath("./basket/cookieList.jsp");
 			   /* 글쓰기 페이지로 이동 -> DB에 접근없이 처리됨
 				* "BoardWrite.bo"를 요청하면 'ActionForward' 객체가 생성되고, 
 				* 'setRedirect(false)'로 리다이렉트 방식이 아닌 포워딩 방식으로 페이지 이동
 				*/
-		   } else if(command.equals("/BoardAddAction.bo")){ //DB에 접근해서 게시글을 전부 불러옴
-			   action  = new BoardAddAction();
+		   
+			   //쿠키 장바구니 담기
+		   } else if (command.equals("/BasketAddAction.ba")) {
+			   action = new BasketAddAction();
 			   try {
-				   forward=action.execute(request, response );
+				   forward = action.execute(request, response);
 			   } catch (Exception e) {
 				   e.printStackTrace();
-			   }
-		   } else if(command.equals("/BoardList.bo")){ //DB에 접근해서 게시글을 전부 불러옴
-			   action = new BoardListAction(); //BoardListAction의 데이터를 받아오기 위한 action 객체 생성?
-			   try{
-				   forward=action.execute(request, response); 
-				   /* 오버라이딩 되는 부분?? BoardListAction의 데이터를 오버라이딩해서 forward객체에 저장?
-				    * BoardListAction의 'execute'메서드를 호출 한 후 그 결과를 forward 변수에 저장
-				    */
-			   }catch(Exception e){
+			   } 
+			   //cookieCart.jsp로 이동
+		   } else if (command.equals("/BasketViewAction.ba")) {
+			   action = new BasketViewAction();
+			   try {
+				   forward = action.execute(request, response);
+			   } catch (Exception e) {
 				   e.printStackTrace();
-			   }
-		   } else if(command.equals("/BoardReplyAction.bo")){
-			   action = new BoardReplyView();
-			   try{
-				   forward=action.execute(request, response);
-			   }catch(Exception e){
-				   e.printStackTrace();
-			   }
-		   } else if(command.equals("/BoardDelete.bo")){
-			   forward=new ActionForward();
-			   forward.setRedirect(false);
-			   forward.setPath("./board/qna_board_delete.jsp");
-		   } else if(command.equals("/BoardModify.bo")){
-			   action = new BoardModifyView();
-			   try{
-				   forward=action.execute(request, response);
-			   }catch(Exception e){
-				   e.printStackTrace();
-			   }
-		   } else if(command.equals("/BoardReplyView.bo")){
-			   action = new BoardReplyAction();
-			   try{
-				   forward=action.execute(request, response);
-			   }catch(Exception e){
-				   e.printStackTrace();
-			   }
-		   } else if(command.equals("/BoardModifyAction.bo")){
-			   action = new BoardModifyAction();
-			   try{
-				   forward=action.execute(request, response);
-			   }catch(Exception e){
-				   e.printStackTrace();
-			   }
-		   } else if(command.equals("/BoardDeleteAction.bo")){
-			   action = new BoardDeleteAction();
-			   try{
-				   forward=action.execute(request, response);
-			   }catch(Exception e){
-				   e.printStackTrace();
-			   }
-		   } else if(command.equals("/BoardDetailAction.bo")){
-			   action = new BoardDetailAction();
-			   try{
-				   forward=action.execute(request, response);
-			   }catch(Exception e){
-				   e.printStackTrace();
-			   }
+			   } 
 		   }
 		   
 		   // Redirect로 보낼지 forward로 보낼지 결정

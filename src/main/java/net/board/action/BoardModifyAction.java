@@ -14,7 +14,8 @@ import net.board.db.*;
 		 ActionForward forward = new ActionForward();
 		 boolean result = false;
 		 
-		 int num=Integer.parseInt(request.getParameter("BOARD_NUM"));
+		 int num=Integer.parseInt(request.getParameter("BOARD_NUM")); 
+		 // 게시글 번호를 Integer로 변환해서 num에 넣어줌
 		 
 		 BoardDAO boarddao=new BoardDAO();
 		 BoardBean boarddata=new BoardBean();

@@ -7,6 +7,7 @@
   version="4.0"
   metadata-complete="false">
   
+  <!-- 게시판 -->
   <servlet>
   	<servlet-name>BoardFrontController</servlet-name>
   	<servlet-class>
@@ -17,8 +18,30 @@
   	<url-pattern>*.bo</url-pattern>
   </servlet-mapping>
   
+  <!-- 로그인 -->
+    <servlet>
+  	<servlet-name>LoginController</servlet-name>
+  	<servlet-class>
+  	net.login.action.LoginController</servlet-class> 
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LoginController</servlet-name>
+  	<url-pattern>*.lo</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 장바구니 -->
+    <servlet>
+  	<servlet-name>BasketController</servlet-name>
+  	<servlet-class>
+  	net.basket.action.BasketController</servlet-class> 
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>BasketController</servlet-name>
+  	<url-pattern>*.ba</url-pattern>
+  </servlet-mapping>
+  
   <session-config>
-  	<session-timeout>1</session-timeout>
+  	<session-timeout>5</session-timeout>
   </session-config>
 
   <display-name>MVCproject</display-name>
